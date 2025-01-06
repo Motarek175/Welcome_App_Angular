@@ -1,0 +1,48 @@
+<main class="w-full max-w-md mx-auto p-6">
+  <div class="mt-7 bg-white rounded-xl shadow-lg border-2 border-[#076dc0]">
+    <div class="p-4 sm:p-7">
+      <div class="text-center">
+        <h1 class="block text-2xl font-bold text-black">Verify Code</h1>
+      </div>
+      <div class="mt-5">
+        <form [formGroup]="resetCodeForm" (ngSubmit)="reset()">
+          <div class="grid gap-y-4">
+            <div>
+              <label for="email" class="block text-sm font-bold ml-1 mb-2"
+                >Enter Recieved Code</label
+              >
+              <div class="relative">
+                <input
+                  type="text"
+                  class="py-2 px-1 block w-full border-2 rounded-md text-sm shadow-sm outline-none border-[#076dc0]"
+                  formControlName="resetcode"
+                />
+                <div
+                  class="mt-1 text-white bg-[#076dc0] rounded-md"
+                  *ngIf="
+                    resetCodeForm.get('resetcode')?.errors &&
+                    resetCodeForm.get('resetcode')?.touched
+                  "
+                >
+                  <p
+                    class="p-2"
+                    *ngIf="resetCodeForm.get('resetcode')?.getError('required')"
+                  >
+                    <li>this field is required</li>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <button
+              type="submit"
+              class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-[#076dc0] text-white hover:bg-[#034174] duration-300 transition-all ease-in-out"
+              [disabled]="resetCodeForm.valid == false"
+            >
+              Reset password
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>

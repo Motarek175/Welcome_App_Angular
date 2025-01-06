@@ -1,0 +1,58 @@
+<main class="w-full max-w-md mx-auto p-6">
+  <div class="mt-7 bg-white rounded-xl shadow-lg border-2 border-[#076dc0]">
+    <div class="p-4 sm:p-7">
+      <div class="text-center">
+        <h1 class="block text-2xl font-bold text-black">Forgot password?</h1>
+        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+          Remember your password?
+          <a
+            class="text-blue-600 decoration-2 hover:underline font-medium"
+            routerLink="/login"
+          >
+            Login here
+          </a>
+        </p>
+      </div>
+
+      <div class="mt-5">
+        <form [formGroup]="forgetemailForm" (ngSubmit)="forgetfunc()">
+          <div class="grid gap-y-4">
+            <div>
+              <label for="email" class="block text-sm font-bold ml-1 mb-2"
+                >Email address</label
+              >
+              <div class="relative">
+                <input
+                  type="email"
+                  id="email"
+                  class="py-2 px-1 block w-full border-2 rounded-md text-sm shadow-sm outline-none border-[#076dc0]"
+                  formControlName="email"
+                />
+                <div
+                  class="mt-1 text-white bg-[#076dc0] rounded-md"
+                  *ngIf="
+                    forgetemailForm.get('email')?.errors &&
+                    forgetemailForm.get('email')?.touched
+                  "
+                >
+                  <p
+                    class="p-2"
+                    *ngIf="forgetemailForm.get('email')?.getError('required')"
+                  >
+                    <li>Email is required</li>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <button
+              type="submit"
+              class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-[#076dc0] text-white hover:bg-[#034174] duration-300 transition-all ease-in-out"
+            >
+              Reset password
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>

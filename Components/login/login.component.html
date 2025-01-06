@@ -1,0 +1,91 @@
+<div class="flex flex-col justify-center py-11 sm:px-6 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-md">
+    <h2 class="text-center text-3xl font-bold text-gray-500">
+      Sign in to your account
+    </h2>
+    <p class="mt-2 text-center text-sm text-gray-600 max-w">
+      Or
+      <a routerLink="/signup" class="font-medium text-[#076dc0]">
+        create an account
+      </a>
+    </p>
+  </div>
+  <div class="mt-0 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+      <form class="space-y-6" [formGroup]="loginForm" (ngSubmit)="login()">
+        <div>
+          <label class="block text-md font-medium text-gray-700">
+            Email address
+          </label>
+          <div class="mt-1">
+            <input
+              type="email"
+              autocomplete="email"
+              required
+              class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-[#076dc0] focus:z-10 sm:text-sm"
+              placeholder="Enter your email address"
+              formControlName="email"
+            />
+          </div>
+          <div
+            class="mt-1 text-white bg-[#076dc0] rounded-md"
+            *ngIf="
+              loginForm.get('email')?.errors && loginForm.get('email')?.touched
+            "
+          >
+            <p class="p-2" *ngIf="loginForm.get('email')?.getError('required')">
+              <li>Email is required</li>
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-md font-medium text-gray-700">
+            Password
+          </label>
+          <div class="mt-1">
+            <input
+              type="password"
+              autocomplete="current-password"
+              required
+              class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-[#076dc0] focus:z-10 sm:text-sm"
+              placeholder="Enter your password"
+              formControlName="password"
+            />
+          </div>
+          <div
+            class="mt-1 text-white bg-[#076dc0] rounded-md"
+            *ngIf="
+              loginForm.get('password')?.errors &&
+              loginForm.get('password')?.touched
+            "
+          >
+            <p
+              class="p-2"
+              *ngIf="loginForm.get('password')?.getError('required')"
+            >
+              <li>Password is required</li>
+            </p>
+          </div>
+        </div>
+
+        <div class="text-md">
+          <a
+            class="font-medium text-[#076dc0] cursor-pointer"
+            routerLink="/forgetPassword"
+          >
+            Forgot your password?
+          </a>
+        </div>
+        <div>
+          <button
+            class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-xl font-medium rounded-md text-white bg-[#076dc0] hover:bg-[#034174] duration-300 transition-all ease-in-out"
+            [disabled]="!loginForm.valid"
+          >
+            Sign in
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
