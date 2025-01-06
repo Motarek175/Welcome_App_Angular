@@ -24,11 +24,19 @@ export class SingupComponent {
     private _UserAuthService: UserAuthService
   ) {}
   regForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required, Validators.minLength(8)]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.pattern(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{8,}$/
+      ),
+    ]),
     rePassword: new FormControl(''),
-    phone: new FormControl('', [Validators.required]),
+    phone: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^01[0125][0-9]{8,}$/),
+    ]),
   });
   isMatched: boolean = false;
   mathcedPasswords() {

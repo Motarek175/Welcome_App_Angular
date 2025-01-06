@@ -32,6 +32,9 @@
             <p class="p-2" *ngIf="regForm.get('name')?.getError('required')">
               <li>name is required</li>
             </p>
+            <p class="p-2" *ngIf="regForm.get('name')?.getError('minlength')">
+              <li>Minimum length is 8</li>
+            </p>
           </div>
         </div>
         <div>
@@ -55,6 +58,9 @@
             >
               <p class="p-2" *ngIf="regForm.get('email')?.getError('required')">
                 <li>Email is required</li>
+              </p>
+              <p class="p-2" *ngIf="regForm.get('email')?.getError('email')">
+                <li>Enter a Valid email</li>
               </p>
             </div>
           </div>
@@ -86,6 +92,14 @@
               *ngIf="regForm.get('password')?.getError('required')"
             >
               <li>Password is required</li>
+            </p>
+            <p class="p-2" *ngIf="regForm.get('password')?.getError('pattern')">
+              The Password Must Contains:
+              <li>at least Minimum eight characters</li>
+              <li>at least one uppercase letter</li>
+              <li>at least one lower letter</li>
+              <li>at least one number</li>
+              <li>at least one special character</li>
             </p>
           </div>
         </div>
@@ -143,6 +157,12 @@
           >
             <p class="p-2" *ngIf="regForm.get('phone')?.getError('required')">
               <li>Phone is required</li>
+            </p>
+            <p class="p-2" *ngIf="regForm.get('phone')?.getError('pattern')">
+              <li>
+                Phone should start with [010,011,012,015] followed by 8 numbers
+                to complete 11 numbers.
+              </li>
             </p>
           </div>
         </div>
