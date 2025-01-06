@@ -48,6 +48,7 @@ export class NewPasswordComponent implements OnInit {
             showConfirmButton: true,
           }).then(() => {
             this._Router.navigate(['/login']);
+            localStorage.clear();
           });
         }
       },
