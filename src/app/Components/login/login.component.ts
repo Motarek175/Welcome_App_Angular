@@ -34,20 +34,22 @@ export class LoginComponent {
     };
     this._UserAuthService.Login(loginData).subscribe({
       next: (res) => {
-        console.log(res);
-        if (res.message == 'success') {
-          Swal.fire({
-            icon: 'success',
-            title: 'Login Success',
-            showConfirmButton: true,
-          }).then(() => {
-            this._Router.navigate(['/home']);
-            this._UserAuthService.isuserlogin.next(true);
-          });
-        }
+        Swal.fire({
+          icon: 'success',
+          title: 'Login Success',
+          showConfirmButton: true,
+        }).then(() => {
+          this._Router.navigate(['/home']);
+          this._UserAuthService.isuserlogin.next(true);
+        });
       },
       error: (err) => {
         console.log(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Login Failed',
+          text: err.error.message,
+        });
       },
     });
   }
